@@ -1,6 +1,6 @@
 from zipfile import ZipFile
 
-from pyoutlookdispatcher import Outlook, Mail
+from pyoutlookdispatcher import Mail, Outlook
 
 import os
 import pandas as pd
@@ -29,16 +29,16 @@ fullsavepath = os.path.join(save_path, 'acumulado.xlsx')
 
 df_grouped.to_excel(fullsavepath)
 
-### Criando arquivo zip
+# Criando arquivo zip
 
 with ZipFile(os.path.join(save_path, 'results.zip'), 'w') as customZip:
     customZip.write(fullsavepath, arcname='acumulado.xlsx')
 
-### Apagando arquivo acumulado temporário
+# Apagando arquivo acumulado temporário
 
 os.unlink(os.path.join(save_path, 'acumulado.xlsx'))
 
-### Disparando email
+# Disparando email
 
 outlook = Outlook()
 
